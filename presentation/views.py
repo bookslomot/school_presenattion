@@ -1,8 +1,12 @@
 from rest_framework import generics, status
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework_swagger import renderers
 
 from presentation.models import Presentation
 from presentation.serializers import PresentationSerializer
+from rest_framework.schemas import SchemaGenerator
 
 
 class PresentationCreateAndListAPIView(generics.ListCreateAPIView):
