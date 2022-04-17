@@ -10,10 +10,19 @@ class UserSerializerOnPresentation(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('name', 'last_name',)
+        fields = ('id', 'name', 'last_name',)
 
 
-class PresentationSerializer(serializers.ModelSerializer):
+class PresentationSerializerList(serializers.ModelSerializer):
+
+    owner = UserSerializerOnPresentation(read_only=True)
+
+    class Meta:
+        model = Presentation
+        fields = ('id', 'title', 'presentation',  'description', 'owner',)
+
+
+class PresentationSerializerDetail(serializers.ModelSerializer):
 
     owner = UserSerializerOnPresentation(read_only=True)
 

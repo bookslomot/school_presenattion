@@ -5,17 +5,17 @@ from rest_framework.views import APIView
 from rest_framework_swagger import renderers
 
 from presentation.models import Presentation
-from presentation.serializers import PresentationSerializer
+from presentation.serializers import PresentationSerializerList, PresentationSerializerDetail
 from rest_framework.schemas import SchemaGenerator
 
 
 class PresentationCreateAndListAPIView(generics.ListCreateAPIView):
 
     queryset = Presentation.objects.all()
-    serializer_class = PresentationSerializer
+    serializer_class = PresentationSerializerList
 
     def post(self, request, *args, **kwargs):
-        serializer = PresentationSerializer(data=request.data)
+        serializer = PresentationSerializerList(data=request.data)
         if serializer.is_valid():
             serializer.validated_data['owner'] = request.user
             serializer.save()
@@ -25,4 +25,4 @@ class PresentationCreateAndListAPIView(generics.ListCreateAPIView):
 
 class PresentationDetailAPIView(generics.RetrieveAPIView):
     queryset = Presentation
-    serializer_class = PresentationSerializer
+    serializer_class = PresentationSerializerDetail
