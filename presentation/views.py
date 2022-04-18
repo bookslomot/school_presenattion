@@ -13,6 +13,7 @@ class PresentationCreateAndListAPIView(generics.ListCreateAPIView):
 
     queryset = Presentation.objects.all()
     serializer_class = PresentationSerializerList
+    permission_classes = (AllowAny, )
 
     def post(self, request, *args, **kwargs):
         serializer = PresentationSerializerList(data=request.data)
@@ -24,5 +25,6 @@ class PresentationCreateAndListAPIView(generics.ListCreateAPIView):
 
 
 class PresentationDetailAPIView(generics.RetrieveAPIView):
+    permission_classes = (AllowAny,)
     queryset = Presentation
     serializer_class = PresentationSerializerDetail
