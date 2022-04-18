@@ -14,3 +14,5 @@ class UserDetailAPIVIew(generics.RetrieveAPIView):
 
 
 
+
+
